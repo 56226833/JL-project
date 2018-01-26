@@ -7,14 +7,16 @@
   </head>
   <body>
     <h1>欢迎来到JL管理系统</h1>
+    {%block form%}
     <form action="/login/" method="post">{%csrf_token%}
         <p><input type="text" name="username" placeholder="用户名..."></p>
         <p><input type="password" name="password" placeholder="密码..."></p>
         <p>
           <input type="submit" value="登陆">
-          <input type="submit" value="注册">
+          <a href="/regist/">注册</a>
         </p>
     </form>
+    {%endblock%}
     {%block error%}{%endblock%}
   </body>
 </html>

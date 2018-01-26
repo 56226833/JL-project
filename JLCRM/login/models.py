@@ -21,9 +21,20 @@ class Project(models.Model):
 class Authority(models.Model):
     level = models.IntegerField('权限')
     description = models.TextField('权限说明')
+    class Meta:
+        verbose_name = '权限等级'
+        verbose_name_plural = '权限等级'
+
+#工资报表
+class Salary(models.Model):
+    amount = models.IntegerField('数目')
+    bonus = models.IntegerField('奖金')
+    reimburse = models.IntegerField('报销额')
 
 #员工表
 class Staff(models.Model):
+    username = models.CharField('用户名', max_length=20)
+    password = models.CharField('密码', max_length=20) 
     name = models.CharField('姓名', max_length=20)
     gendar = models.IntegerField('性别')
     age = models.IntegerField('年龄')
@@ -35,12 +46,10 @@ class Staff(models.Model):
     dialNumber = models.IntegerField('电话号码')
     authority = models.OneToOneField(Authority, on_delete =models.CASCADE)
     project = models.ForeignKey(Project, on_delete =models.CASCADE)
-
-#用户表
-class User(models.Model):
-    username = models.CharField('用户名', max_length=20)
-    password = models.CharField('密码', max_length=20)
-    staff = models.OneToOneField(Staff, on_delete =models.CASCADE)
+    salary = models.OneToOneField(Salary, on_delete =models.CASCADE)
+    class Meta:
+        verbose_name = '员工'
+        verbose_name_plural = '员工'
 
 #公司表
 class Company(models.Model):
@@ -50,10 +59,3 @@ class Company(models.Model):
     intention = models.TextField('公司意向')
     score = models.IntegerField('公司评分')
     project = models.ForeignKey(Project, on_delete =models.CASCADE)
-
-#工资报表
-class Salary(models.Model):
-    staff = models.OneToOneField(Staff, on_delete =models.CASCADE)
-    amount = models.IntegerField('数目')
-    bonus = models.IntegerField('奖金')
-    reimburse = models.IntegerField('报销额')

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from login.models import User
+from login.models import Staff,Authority,Salary,Company,Project,Contactor
 from django.contrib.auth import authenticate
 from django.http import HttpResponseRedirect
 
@@ -19,3 +19,6 @@ def index(request):
 
 def error(request):
     return render(request, 'error.html', {})
+
+def regist(request):
+    return render(request, 'regist.html',{})
