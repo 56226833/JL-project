@@ -6,8 +6,9 @@
 
   </head>
   <body>
+    {%block regist%}
     <h1>注册</h1>
-  <form class="" action="/regist/" method="post">
+  <form class="" action="/regist/" method="post">{%csrf_token%}
       <p><input type="text" placeholder="用户名...." name="username"></p>
       <p><input type="text" placeholder="密码...." name="password"></p>
       <p><input type="text" placeholder="姓名...." name="name"></p>
@@ -20,5 +21,7 @@
       <p><input type="text" placeholder="e-mail...." name="email"></p>
       <p><input type="submit" value="注册"> <input type="reset"></p>
   </form>
+  <a href="/index/"></a>
+  {%endblock%}
   </body>
 </html>
