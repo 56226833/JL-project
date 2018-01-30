@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title></title>
+  </head>
+  <body>
+    <h1>项目信息</h1>
+    <form action="/addProject/" method="post" >{%csrf_token%}
+      <p>
+        <label for="name">项目名称</label>
+        <input type="text" name="name">
+      </p>
+      <p>
+        <label for="description">项目内容</label>
+        <input type="text" name="description">
+      </p>
+      <p>
+        <label for="beginTime">开始时间</label>
+        <input type="date" name="beginTime">
+      </p>
+      <p>
+        <label for="beginTime">结束时间</label>
+        <input type="date" name="endTime">
+      </p>
+      <input type="submit" name="" value="提交">
+      <input type="reset" name="" value="重置">
+    </form>
+  </body>
+</html>
