@@ -10,7 +10,7 @@ class AuthorityAdmin(admin.ModelAdmin):
     list_display = ['level','description']
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['project_name','description','beginTime','endTime', 'contactor','staff']
+    list_display = ['name','description','beginTime','endTime', 'contactor','staff']
 
 class ContactorAdmin(admin.ModelAdmin):
     list_display = ['name','gendar','dialNumber','email']

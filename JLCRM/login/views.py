@@ -26,7 +26,7 @@ def regist(request):
 
 #增加项目
 def addProject(request):
-    if(request.method == "POST"):
+    if request.method == "POST":
         tags = ['name','description','beginTime','endTime']
         insertDB(request,tags,models.Project)
         return render(request, 'index.html')
@@ -37,6 +37,29 @@ def addContactor(request):
         tags=['name','gendar','dialNumber','email']
         insertDB(request,tags,models.Contactor)
         return render(request,'index.html')
+
+#增加权限
+def addAuthority(request):
+    if(request.method == 'POST'):
+        tags=['level','description']
+        insertDB(request,tags,models.Authority)
+        return render(request,'index.html')
+
+#增加联系人
+def addCompany(request):
+    if(request.method == 'POST'):
+        tags=['name','visits','lastVisitTime','intention','score']
+        insertDB(request,tags,models.Company)
+        return render(request,'index.html')
+
+
+#管理界面
+# def main(request):
+
+
+
+
+
 
 
 #数据库-删
@@ -57,11 +80,8 @@ def insertDB(request,tags,model):
     model.objects.create(**value)
 
 #页面处理
-def index(request):
-    return render(request, 'index.html')
-def error(request):
-    return render(request, 'error.html')
-def registion(request):
-    return render(request, 'regist.html')
-def project(request):
-    return render(request, 'add_project.html')
+def redirect(request,param):
+    return render(request,param+'.html')
+
+# def index(request):
+#     return render(request, 'index.html')

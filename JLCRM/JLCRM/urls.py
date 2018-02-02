@@ -19,11 +19,10 @@ from login import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index),
-    path('login/', views.login),
-    path('error/', views.error),
-    path('registion/', views.registion),
-    path('regist/', views.regist),
-    path('project/', views.project),
-    path('addProject/', views.addProject),
+    # path('index/$', views.index),
+    path('login/',views.login),
+    path('regist/',views.regist),
+    path('addProject/',views.addProject),
+    path('<param>/',views.redirect),
+
 ]

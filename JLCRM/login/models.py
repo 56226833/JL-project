@@ -49,14 +49,14 @@ class Contactor(models.Model):
 
 #项目表
 class Project(models.Model):
-    project_name = models.CharField('项目名称', max_length=30)
+    name = models.CharField('项目名称', max_length=30)
     description = models.TextField('项目内容')
     beginTime = models.DateTimeField('开始时间')
     endTime = models.DateTimeField('结束时间')
     contactor = models.ForeignKey(Contactor, verbose_name='联系人', on_delete=models.CASCADE, null=True)
     staff = models.ForeignKey(Staff, verbose_name='员工', on_delete=models.CASCADE, null=True)
     def __str__(self):
-        return self.project_name
+        return self.name
     class Meta:
         verbose_name = '项目'
         verbose_name_plural = '项目'
@@ -68,4 +68,8 @@ class Company(models.Model):
     lastVisitTime = models.TimeField('上次拜访时间')
     intention = models.TextField('公司意向')
     score = models.IntegerField('公司评分')
-    #project = models.ForeignKey(Project, on_delete =models.CASCADE)
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = '单位'
+        verbose_name_plural = '单位'
