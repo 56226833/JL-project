@@ -18,8 +18,12 @@ def login(request):
 #注册用户
 def regist(request):
     tags = ['username','password','name','gendar','age','education','zone','qualification','dialNumber','email']
-    if(request.method == 'POST'):
+    if request.method == 'POST':
         insertDB(request,tags,models.Staff)
+        if selectDB('gendar','on',models.Staff)
+            request.POST.get('gendar') = '男'
+        else:
+            request.POST.get('gendar') = '女'
         return render(request, 'regist_result.html')
     else:
         return render(request, 'regist_fail.html')
