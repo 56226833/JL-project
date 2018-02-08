@@ -1,0 +1,22 @@
+{%extends "table.html"%}
+{%block table%}
+<thead>
+    <tr>
+        <th>项目名称</th>
+        <th>项目联系人</th>
+        <th>开始时间</th>
+        <th>项目监理</th>
+        <th>项目状态</th>
+    </tr>
+</thead>
+<tbody>
+  {%for project in projects%}
+    <tr class="odd gradeX">
+        <td>{{project.project_name}}</td>
+        <td>{{project.contactor.contactor_name}}</td>
+        <td>{{project.beginTime}}</td>
+        <td class="center">{{project.staff.staff_name}}</td>
+        <td class="center">{{project.status}}</td>
+    </tr>
+  {%endfor%}
+{%endblock%}

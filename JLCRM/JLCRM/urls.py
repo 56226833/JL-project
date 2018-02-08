@@ -23,6 +23,7 @@ urlpatterns = [
     path('login/',views.login),
     path('regist/',views.regist),
     path('addProject/',views.addProject),
+    path('main_/',views.main),
     path('<param>/',views.redirect),
 
 ]

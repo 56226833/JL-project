@@ -2,6 +2,8 @@ from django.shortcuts import render
 from login import models
 from django.contrib.auth import authenticate
 from django.http import HttpResponseRedirect
+from itertools import chain
+from django.http import HttpResponse
 
 #登陆
 def login(request):
@@ -10,28 +12,26 @@ def login(request):
         password = request.POST['password']
         user = models.Staff.objects.filter(username=username, password=password)
         if user:
-            name = models.Staff.objects.filter(username=username).first().name
-            return render(request, 'main.html', {"name":name})
+            staff_name = models.Staff.objects.filter(username=username).first().staff_name
+            return render(reqeust,'main_.html',locals())
         else:
-            return HttpResponseRedirect('/error/')
+            return HttpResponseRedirect('/login_fail/')
 
 #注册用户
 def regist(request):
-    tags = ['username','password','name','gendar','age','education','zone','qualification','dialNumber','email']
+    tags = ['username','password','staff_name','staff_gendar','age','education','staff_zone','qualification','staff_dialNumber','staff_email']
     if request.method == 'POST':
-        insertDB(request,tags,models.Staff)
-        if selectDB('gendar','on',models.Staff)
-            request.POST.get('gendar') = '男'
+        param = request.POST.get('username')
+        if models.Staff.objects.filter(username=param):
+            return HttpResponseRedirect('/regist_result/')
         else:
-            request.POST.get('gendar') = '女'
-        return render(request, 'regist_result.html')
-    else:
-        return render(request, 'regist_fail.html')
+            insertDB(request,tags,models.Staff)
+            return HttpResponseRedirect('/regist_fail/')
 
 #增加项目
 def addProject(request):
     if request.method == "POST":
-        tags = ['name','description','beginTime','endTime']
+        tags = ['project_name','project_description','beginTime','endTime']
         insertDB(request,tags,models.Project)
         return render(request, 'index.html')
 
@@ -57,9 +57,11 @@ def addCompany(request):
         return render(request,'index.html')
 
 
-#管理界面
-# def main(request):
-
+def main(request):
+    staffs = models.Staff.objects.all()
+    projects = models.Project.objects.all()
+    companies = models.Company.objects.all()
+    return render(request,'main_.html',locals())
 
 
 
@@ -85,7 +87,8 @@ def insertDB(request,tags,model):
 
 #页面处理
 def redirect(request,param):
-    return render(request,param+'.html')
-
-# def index(request):
-#     return render(request, 'index.html')
+    projects = models.Project.objects.all()
+    staffs = models.Staff.objects.all()
+    companies = models.Company.objects.all()
+    contactors = models.Contactor.objects.all()
+    return render(request,param+'.html',locals())

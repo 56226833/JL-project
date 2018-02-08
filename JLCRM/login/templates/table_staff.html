@@ -1,0 +1,34 @@
+{%extends "table.html"%}
+{%block table%}
+<thead>
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>学历</th>
+        <th>职称</th>
+        <th>区域</th>
+        <th>电话号码</th>
+        <th>E-mail</th>
+        <th>工资</th>
+        <th>奖金</th>
+        <th>报销</th>
+    </tr>
+</thead>
+<tbody>
+  {%for staff in staffs%}
+    <tr class="odd gradeX">
+        <td class="center">{{staff.staff_name}}</td>
+        <td class="center">{{staff.age}}</td>
+        <td class="center">{{staff.staff_gendar}}</td>
+        <td class="center">{{staff.education}}</td>
+        <td class="center">{{staff.qualification}}</td>
+        <td class="center">{{staff.staff_zone}}</td>
+        <td class="center">{{staff.staff_dialNumber}}</td>
+        <td class="center">{{staff.staff_email}}</td>
+        <td class="center">{{staff.amount}}</td>
+        <td class="center">{{staff.bonus}}</td>
+        <td class="center">{{staff.reimburse}}</td>
+    </tr>
+  {%endfor%}
+{%endblock%}
